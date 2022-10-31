@@ -1,8 +1,10 @@
+import time
 print("введи user_id")
-user_id = input() #задали user_id
-print("введи филиалы в формате '1, 2, 3'")
+user_id = input()  # задали user_id
+print("введи филиалы в формате '1,2,3' (запрос select group_concat(salon_id from salon_grups_link where...")
 salon_id = input() #Задали список филиалов через запятую
-list = salon_id.split() #указал, что загруженные филиалы являются списком (после запятой, пробел обязателен)
+# указал, что загруженные филиалы являются списком (после запятой, пробел обязателен)
+list = salon_id.split(",")
 print("внеси шаблон прав (скопировать из БД только значения, кроме user_id, salon_id) через запятую")
 shablon = input() #Шаблон для user_salon_link
 print("Внеси шаблон для user_notification_settings (только status и status_by_permissions) через запятую")
@@ -122,3 +124,5 @@ with open('users_notifi_type.sql', 'w') as p:
         print("(", "NULL", ",", a, ", ", user_id, ", ", shablon5, ")",",", sep="", file=p)
         print("(", "NULL", ",", a, ", ", user_id, ", ", shablon6, ")",",", sep="", file=p)
         print("(", "NULL", ",", a, ", ", user_id, ", ", shablon7, ")",",", sep="", file=p)
+print("Не забудь отредактировать созданные\перезаписаные файлы))")
+time.sleep(5)
