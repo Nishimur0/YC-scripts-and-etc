@@ -19,13 +19,13 @@ print('Введи даты исключения в формате г-м-д \n  �
 while temp != 'Y' or temp != 'y' and temp != 'н' and temp != 'Н' :
     temp = str(input())
     if temp != 'Y' and temp != 'y' and temp != 'н' and temp != 'Н' :
-        temp = datetime.strptime(temp, dateFormatter)
-        exceptions.append(temp)
+        exceptions.append(str(datetime.strptime(temp, '%Y-%m-%d')))
     else:
         break
 
 for x in range(0, (end - start).days):
-    if (start + timedelta(days=x)).strftime('%Y-%m-%d') not in exceptions:
+    day = str((start + timedelta(days=x)).strftime('%Y-%m-%d'))
+    if str(datetime.strptime(day, '%Y-%m-%d')) not in exceptions:
         list_of_dates.append((start + timedelta(days=x)).strftime('%Y-%m-%d'))
     else:
         continue
@@ -48,3 +48,4 @@ with open('update services.sql', 'w') as updates:
     print(F"update salons_services_link set schedule_template = 3, date_from = '{start.strftime('%Y-%m-%d')}', date_to = '{end.strftime('%Y-%m-%d')}' where id in \n(", end='', file=updates)
     print(*salon_service_links, sep=',\n', end = '', file = updates)
     print(");", file = updates)
+
