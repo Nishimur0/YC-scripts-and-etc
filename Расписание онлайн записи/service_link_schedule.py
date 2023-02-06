@@ -16,9 +16,9 @@ exceptions = []
 temp = ''
 
 print('Введи даты исключения в формате г-м-д \n  Если исключения все введены, введи Y или y \n')
-while temp != 'Y' or temp != 'y':
+while temp != 'Y' or temp != 'y' and temp != 'н' and temp != 'Н' :
     temp = str(input())
-    if temp != 'Y' and temp != 'y':
+    if temp != 'Y' and temp != 'y' and temp != 'н' and temp != 'Н' :
         temp = datetime.strptime(temp, dateFormatter)
         exceptions.append(temp)
     else:
