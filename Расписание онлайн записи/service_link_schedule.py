@@ -7,7 +7,9 @@ print("select concat(salon_id,', ', service_id,', ', id) from salons_services_li
 num_rows = int(input("Сколько строк вернул запрос? "))
 print("результаты запроса ")
 list_of_services = [input().split(',') for i in range(num_rows)]
-
+list_of_weekdays = []
+print('введи дни недели, которых не должно быть через запятую 0 = понедельник, 6 = воскресение')
+weekdays = input().split()
 start = datetime.strptime(str(input('Дата начала (включительно): ')), dateFormatter)
 end = datetime.strptime(str(input('Дата окончания(не включительно): ')), dateFormatter)
 
@@ -25,7 +27,7 @@ while temp != 'Y' or temp != 'y' and temp != 'н' and temp != 'Н' :
 
 for x in range(0, (end - start).days):
     day = str((start + timedelta(days=x)).strftime('%Y-%m-%d'))
-    if str(datetime.strptime(day, '%Y-%m-%d')) not in exceptions:
+    if str(datetime.strptime(day, '%Y-%m-%d')) not in exceptions and str(datetime.strptime(day, '%Y-%m-%d').weekday()) not in weekdays:
         list_of_dates.append((start + timedelta(days=x)).strftime('%Y-%m-%d'))
     else:
         continue
@@ -48,4 +50,4 @@ with open('update services.sql', 'w') as updates:
     print(F"update salons_services_link set schedule_template = 3, date_from = '{start.strftime('%Y-%m-%d')}', date_to = '{end.strftime('%Y-%m-%d')}' where id in \n(", end='', file=updates)
     print(*salon_service_links, sep=',\n', end = '', file = updates)
     print(");", file = updates)
-
+print(weekdays)
