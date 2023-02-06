@@ -50,4 +50,3 @@ with open('update services.sql', 'w') as updates:
     print(F"update salons_services_link set schedule_template = 3, date_from = '{start.strftime('%Y-%m-%d')}', date_to = '{end.strftime('%Y-%m-%d')}' where id in \n(", end='', file=updates)
     print(*salon_service_links, sep=',\n', end = '', file = updates)
     print(");", file = updates)
-print(weekdays)
