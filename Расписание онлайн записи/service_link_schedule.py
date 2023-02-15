@@ -8,7 +8,7 @@ num_rows = int(input("Сколько строк вернул запрос? "))
 print("результаты запроса ")
 list_of_services = [input().split(',') for i in range(num_rows)]
 list_of_weekdays = []
-print('введи дни недели, которых не должно быть через запятую 0 = понедельник, 6 = воскресение')
+print('Введи дни недели, которых не должно быть через запятую 0 = понедельник, 6 = воскресение')
 weekdays = input().split()
 start = datetime.strptime(str(input('Дата начала (включительно): ')), dateFormatter)
 end = datetime.strptime(str(input('Дата окончания(не включительно): ')), dateFormatter)
