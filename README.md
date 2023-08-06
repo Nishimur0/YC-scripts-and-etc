@@ -1,2 +1,0 @@
-# YC scripts and etc
- 
